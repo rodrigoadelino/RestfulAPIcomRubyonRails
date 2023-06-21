@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_21_084213) do
+ActiveRecord::Schema.define(version: 2023_06_21_210554) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "name"
@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2023_06_21_084213) do
     t.date "birthdate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "kind_id", null: false
+    t.integer "kind_id"
     t.index ["kind_id"], name: "index_contacts_on_kind_id"
   end
 
