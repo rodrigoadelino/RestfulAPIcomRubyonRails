@@ -1,6 +1,8 @@
 namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
+    puts "Resetando o banco de dados..."
+    %x(rails db:drop:_unsafe db:create db:migrate )
     puts "Cadastrando os tipos de contatos"
     kinds = %w(amigo comercial conhecido) # com o %w não é necessario inserir a virgula 
     kinds.each do |kind|  
@@ -35,5 +37,21 @@ namespace :dev do
       end
     end
     puts "Telefones cadastrados com sucesso"
-  end 
+    ######################
+    puts "Cadastrando os Enderecos..."
+
+    Contact.all.each do |contact|
+      address = Address.create!(
+        street: Faker::Address.street_address,
+        city:Faker::Address::city, 
+        contact: contact 
+      )
+    end
+    puts "Endereços cadastrados com sucesso"
+  end
 end
+
+
+# Testar o que foi feito no Rails c
+Contact.last
+Contact.last.address
