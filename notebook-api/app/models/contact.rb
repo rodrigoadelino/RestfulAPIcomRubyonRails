@@ -2,7 +2,7 @@ class Contact < ApplicationRecord
 	# Associates
 	belongs_to :kind #, optional: true
 	has_many :phones  #Possui muitos telefones
-	accepts_nested_attributes_for :phones  
+	accepts_nested_attributes_for :phones, allow_destroy: true #Atraves de um contato apagar um telefone
 
 	def as_json(options={})
 		h = super(options)
