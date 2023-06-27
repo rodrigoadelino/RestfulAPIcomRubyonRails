@@ -52,6 +52,3 @@ namespace :dev do
 end
 
 
-# Testar o que foi feito no Rails c
-Contact.last
-Contact.last.address

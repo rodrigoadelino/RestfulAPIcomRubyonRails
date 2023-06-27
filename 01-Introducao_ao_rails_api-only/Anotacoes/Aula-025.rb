@@ -38,3 +38,8 @@ Contact.all.each do |contact|
   )
 end
 puts "Endereços cadastrados com sucesso"
+
+
+# Testar o que foi feito no Rails c
+Contact.last
+Contact.last.address

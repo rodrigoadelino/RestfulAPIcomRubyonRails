@@ -6,7 +6,7 @@ class Contact < ApplicationRecord
 
 
 	accepts_nested_attributes_for :phones, allow_destroy: true #Atraves de um contato apagar um telefone
-	accepts_nested_attributes_for :address
+	accepts_nested_attributes_for :address, update_only: true # update_only: true permite atualizar e nao cadastra outro
 
 	def as_json(options={})
 		h = super(options)
