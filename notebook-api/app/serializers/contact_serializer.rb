@@ -1,5 +1,14 @@
 class ContactSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :birthdate
+  attributes :id, :name, :email, :birthdate #, :author
+
+  # def author
+  #   "Rodrigo Bonfim"
+  # end
+
+  meta do
+    { author: "Rodrigo Bonfim"}
+  end
+
 
   #Associates
   belongs_to :kind 
