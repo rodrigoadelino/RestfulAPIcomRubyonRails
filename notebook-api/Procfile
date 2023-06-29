@@ -1,1 +1,2 @@
-web: PORT=3000 rails s
+setup: rails dev:setup
+web: rails server -p 3000

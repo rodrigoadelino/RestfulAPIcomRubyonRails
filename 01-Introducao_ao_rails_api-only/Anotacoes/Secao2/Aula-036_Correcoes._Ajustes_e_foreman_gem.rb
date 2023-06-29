@@ -12,7 +12,8 @@
 gem 'foreman'
 
 #criar um arquivo na raiz do projeto como Procfile com o conteudo abaixo 
-web: PORT=3000 rails s
+#web: PORT=3000 rails s
+web: bundle exec rails server -p 3000
 
 #Chamar o arquivo foreman
 foreman start
