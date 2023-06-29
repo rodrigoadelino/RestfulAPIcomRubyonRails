@@ -1,6 +1,21 @@
 class ContactSerializer < ActiveModel::Serializer
   attributes :id, :name, :email, :birthdate #, :author
 
+  #Associates
+  belongs_to :kind  do
+    link(:kind) {kind_url(object.kind.id)}
+  end
+  has_many :phones  
+  has_one :address
+
+
+  # link(:self) {contact_path(object.id)}
+  # link(:kind) {kind_path(object.kind.id)}
+
+  # URL COMPLETA
+  link(:self) {contact_url(object.id)}          
+  link(:kind) {kind_url(object.kind.id)}
+  
   # def author
   #   "Rodrigo Bonfim"
   # end
@@ -10,10 +25,6 @@ class ContactSerializer < ActiveModel::Serializer
   end
 
 
-  #Associates
-  belongs_to :kind 
-  has_many :phones  
-  has_one :address
 
 
   def attributes(*args)
