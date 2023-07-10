@@ -1,6 +1,13 @@
+### Liberar a rotas em: notebook-api\config\routes.rb
+#Singular
+resource :phones, only: [:update, :create, :destroy]
+resource :phones, only: [:update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+
+
+
+### Alterar as action em notebook-api\app\controllers\phones_controller.rb
 class PhonesController < ApplicationController
   before_action :set_contact
-
 
   # DELETE /contacts/1/phone
   def destroy
@@ -19,8 +26,7 @@ class PhonesController < ApplicationController
     end
   end
   
-  
-  # PATCH /contacts/1/phone
+    # PATCH /contacts/1/phone
   def update
     phone = Phone.find(phone_params[:id])
     
@@ -46,3 +52,40 @@ class PhonesController < ApplicationController
     ActiveModelSerializers::Deserialization.jsonapi_parse(params)
   end
 end
+
+
+### TESTE POST 
+# http://localhost:3000/contacts/1/phone
+{
+	"data": {
+			"type": "phones",
+			"attributes": {
+					"number": "(11) 945839744"
+			}
+	}
+}
+
+
+### TESTE UPDATE 
+# http://localhost:3000/contacts/1/phone
+{
+	"data": 
+	{
+			"id":189,
+			"type": "phones",
+			"attributes": {
+					"number": "(11) 9XXXX9744"
+			}
+	}
+}
+
+
+
+### TESTE DELETE
+{
+	"data": 
+	{
+			"id": 188
+
+	}
+}

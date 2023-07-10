@@ -8,6 +8,10 @@ Rails.application.routes.draw do
     resource :phones, only: [:show]
     resource :phones, only: [:show], path: 'relationships/phones' # aponta para a mesma rota porem com o relationships
 
+    #Singular
+    resource :phone, only: [:update, :create, :destroy]
+    resource :phone, only: [:update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+
     resource :address, only: [:show, :update, :create, :destroy]
     resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
     end
