@@ -12,4 +12,4 @@ Digest::MD5::hexdigest('rodrigo:senha')
 
 
 # Fazer o login usando usuario e senha com o Curl 
-curl http://localhost:3000/kinds -I -H 'Accept: application/json' -u rodrigo:secret
+curl http://localhost:3000/kinds -I -H 'Accept: application/json' -u rodrigo:secret -v
