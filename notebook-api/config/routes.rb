@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     resource :phones, only: [:show]
     resource :phones, only: [:show], path: 'relationships/phones' # aponta para a mesma rota porem com o relationships
 
-    resource :address, only: [:show]
-    resource :address, only: [:show], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+    resource :address, only: [:show, :update, :create, :destroy]
+    resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
     end
   # get '/contacts', to: "contacts#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
