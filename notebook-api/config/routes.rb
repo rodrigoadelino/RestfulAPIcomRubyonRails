@@ -3,20 +3,39 @@ Rails.application.routes.draw do
   resources :auths, only: [:create]
   resources :kinds
   
-  resources :contacts do
-    resource :kind , only: [:show]
-    resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
-    
-    resource :phones, only: [:show]
-    resource :phones, only: [:show], path: 'relationships/phones' # aponta para a mesma rota porem com o relationships
+  scope module: 'v1' do
+    resources :contacts, :constraints => lambda { |request| request.params[:version] == "1" } do
+      resource :kind , only: [:show]
+      resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
+      
+      resource :phones, only: [:show]
+      resource :phones, only: [:show], path: 'relationships/phones' # aponta para a mesma rota porem com o relationships
 
-    #Singular
-    resource :phone, only: [:update, :create, :destroy]
-    resource :phone, only: [:update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+      #Singular
+      resource :phone, only: [:update, :create, :destroy]
+      resource :phone, only: [:update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
 
-    resource :address, only: [:show, :update, :create, :destroy]
-    resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+      resource :address, only: [:show, :update, :create, :destroy]
+      resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+      end
     end
   # get '/contacts', to: "contacts#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  scope module: 'v2' do
+    resources :contacts, :constraints => lambda { |request| request.params[:version] == "2" } do
+      resource :kind , only: [:show]
+      resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
+      
+      resource :phones, only: [:show]
+      resource :phones, only: [:show], path: 'relationships/phones' # aponta para a mesma rota porem com o relationships
+
+      #Singular
+      resource :phone, only: [:update, :create, :destroy]
+      resource :phone, only: [:update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+
+      resource :address, only: [:show, :update, :create, :destroy]
+      resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
+      end
+    end
 end
