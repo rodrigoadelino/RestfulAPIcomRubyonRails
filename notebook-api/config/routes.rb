@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   resources :auths, only: [:create]
   resources :kinds
   
-  scope module: 'v1' do
-    resources :contacts, :constraints => lambda { |request| request.params[:version] == "1" } do
+  # scope module: 'v1' do
+  api_version(:module => "V1", :parameter => {:name => "version", :value => "1"}) do
+    resources :contacts do
       resource :kind , only: [:show]
       resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
       
@@ -17,13 +18,13 @@ Rails.application.routes.draw do
 
       resource :address, only: [:show, :update, :create, :destroy]
       resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
-      end
     end
+  end
   # get '/contacts', to: "contacts#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  scope module: 'v2' do
-    resources :contacts, :constraints => lambda { |request| request.params[:version] == "2" } do
+  api_version(:module => "V2", :parameter => {:name => "version", :value => "2"}) do
+    resources :contacts do
       resource :kind , only: [:show]
       resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
       
@@ -36,6 +37,6 @@ Rails.application.routes.draw do
 
       resource :address, only: [:show, :update, :create, :destroy]
       resource :address, only: [:show, :update, :create, :destroy], path: 'relationships/address' # aponta para a mesma rota porem com o relationships
-      end
     end
+  end
 end
