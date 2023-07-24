@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   resources :kinds
   
   # scope module: 'v1' do
-  api_version(:module => "V1", :parameter => {:name => "version", :value => "1"}) do
+  #api_version(:module => "V1", :parameter => {:name => "version", :value => "1"}) do
+  api_version(:module => "V1", :header => {:name => "X-Version", :value => "1.0"}) do
     resources :contacts do
       resource :kind , only: [:show]
       resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
@@ -23,7 +24,7 @@ Rails.application.routes.draw do
   # get '/contacts', to: "contacts#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   
-  api_version(:module => "V2", :parameter => {:name => "version", :value => "2"}) do
+  api_version(:module => "V2", :header => {:name => "X-Version", :value => "2.0"}) do
     resources :contacts do
       resource :kind , only: [:show]
       resource :kind , only: [:show], path: 'relationships/kind' # aponta para a mesma rota porem com o relationships
