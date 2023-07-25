@@ -1,10 +1,11 @@
-Rails.application.routes.draw do
-  mount_devise_token_auth_for 'User', at: 'auth'
-  resources :auths, only: [:create]
-  resources :kinds
+#configurar em 
+C:\Windows\System32\drivers\etc\hosts
+127.0.0.1			v1.meusite.local
+127.0.0.1			v2.meusite.local
 
 
-  constraints subdomain: 'v1' do
+### Alterar a routes em notebook-api\config\routes.rb
+constraints subdomain: 'v1' do
     scope module: 'v1' do
       resources :contacts do 
         resource :kind , only: [:show]
@@ -22,10 +23,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  # get '/contacts', to: "contacts#index"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
-
+ 
   constraints subdomain: 'v2' do
     scope module: 'v2' do
       resources :contacts do
@@ -44,4 +42,8 @@ Rails.application.routes.draw do
       end
     end
   end
-end
+
+
+### Caso haja problmea com subdominio
+# config/environments/development.rb
+config.action_dispatch.tld_length = 0
