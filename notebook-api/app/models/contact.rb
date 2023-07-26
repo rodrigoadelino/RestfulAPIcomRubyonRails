@@ -1,4 +1,8 @@
 class Contact < ApplicationRecord
+
+	#Kaminari
+	paginates_per 5
+
 	# Associates
 	belongs_to :kind #, optional: true
 	has_many :phones  #Possui muitos telefones
