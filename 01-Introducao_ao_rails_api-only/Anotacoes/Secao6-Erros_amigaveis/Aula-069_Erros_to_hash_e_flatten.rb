@@ -1,4 +1,4 @@
-### Incluir as validações abaixo em 
+### Incluir as validações abaixo em: notebook-api\app\models\contact.rb
 class Contact < ApplicationRecord
 
 	#Validations
