@@ -10,7 +10,13 @@ module V1
       @contacts = Contact.all.page(page_number).per(per_page) 
       # # Cache-control
       # expires_in 30.seconds, public: true 
-      render json: @contacts
+      # if stale?(etag: @contacts)
+      #   render json: @contacts
+      # end
+      #Last Modifield
+      if stale?(last_modified: @contacts[0].updated_at)
+        render json: @contacts
+      end
     end
 
     # GET /contacts/1
