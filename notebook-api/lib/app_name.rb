@@ -1,8 +1,3 @@
-## Adicionando a pasta "lib" em: notebook-api\config\application.rb
-config.autoload_paths << Rails.root.join('lib')
-
-
-## criar um rack em: notebook-api\lib\app_name.rb
 class AppName
 	def initialize(app)
 		@app = app
