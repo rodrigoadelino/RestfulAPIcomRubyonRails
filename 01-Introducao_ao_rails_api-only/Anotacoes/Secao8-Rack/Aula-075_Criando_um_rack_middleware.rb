@@ -13,3 +13,9 @@ class AppName
 		[status, headers, [response.body]]
 	end
 end
+
+
+### Incluir a linha abaixo em notebook-api\config\initializers\cors.rb
+unless Rails.env.test?
+  Rails.application.config.middleware.use AppName
+end
