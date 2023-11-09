@@ -10,7 +10,8 @@ gem 'sqlite3', '~> 1.4'
 # I18n
 gem 'rails-i18n'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+#gem 'puma', '~> 5.0'
+gem "puma", ">= 5.6.7"
 gem 'jwt'
 gem 'devise'
 gem 'devise_token_auth'
